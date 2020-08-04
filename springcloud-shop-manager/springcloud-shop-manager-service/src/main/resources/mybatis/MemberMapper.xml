@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shop.dao.MemberMapper" >
+  <resultMap id="BaseResultMap" type="com.shop.entity.Member" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="attributeValue0" property="attributevalue0" jdbcType="VARCHAR" />
+    <result column="attributeValue1" property="attributevalue1" jdbcType="VARCHAR" />
+    <result column="attributeValue2" property="attributevalue2" jdbcType="VARCHAR" />
+    <result column="attributeValue3" property="attributevalue3" jdbcType="VARCHAR" />
+    <result column="attributeValue4" property="attributevalue4" jdbcType="VARCHAR" />
+    <result column="attributeValue5" property="attributevalue5" jdbcType="VARCHAR" />
+    <result column="attributeValue6" property="attributevalue6" jdbcType="VARCHAR" />
+    <result column="attributeValue7" property="attributevalue7" jdbcType="VARCHAR" />
+    <result column="attributeValue8" property="attributevalue8" jdbcType="VARCHAR" />
+    <result column="attributeValue9" property="attributevalue9" jdbcType="VARCHAR" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="birth" property="birth" jdbcType="TIMESTAMP" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="encodedPassword" property="encodedpassword" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="point" property="point" jdbcType="BIGINT" />
+    <result column="safeKeyExpire" property="safekeyexpire" jdbcType="TIMESTAMP" />
+    <result column="safeKeyValue" property="safekeyvalue" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="zipCode" property="zipcode" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="BIGINT" />
+    <result column="memberRank_id" property="memberrankId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, address, amount, attributeValue0, attributeValue1, attributeValue2, attributeValue3,
+    attributeValue4, attributeValue5, attributeValue6, attributeValue7, attributeValue8,
+    attributeValue9, balance, birth, email, encodedPassword, gender, mobile, name, phone,
+    point, safeKeyExpire, safeKeyValue, username, zipCode, area_id, memberRank_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Member
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Member
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.shop.entity.Member" >
+    insert into Member (id, address, amount,
+      attributeValue0, attributeValue1, attributeValue2,
+      attributeValue3, attributeValue4, attributeValue5,
+      attributeValue6, attributeValue7, attributeValue8,
+      attributeValue9, balance, birth,
+      email, encodedPassword, gender,
+      mobile, name, phone,
+      point, safeKeyExpire, safeKeyValue,
+      username, zipCode, area_id,
+      memberRank_id)
+    values (#{id,jdbcType=BIGINT}, #{address,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL},
+      #{attributevalue0,jdbcType=VARCHAR}, #{attributevalue1,jdbcType=VARCHAR}, #{attributevalue2,jdbcType=VARCHAR},
+      #{attributevalue3,jdbcType=VARCHAR}, #{attributevalue4,jdbcType=VARCHAR}, #{attributevalue5,jdbcType=VARCHAR},
+      #{attributevalue6,jdbcType=VARCHAR}, #{attributevalue7,jdbcType=VARCHAR}, #{attributevalue8,jdbcType=VARCHAR},
+      #{attributevalue9,jdbcType=VARCHAR}, #{balance,jdbcType=DECIMAL}, #{birth,jdbcType=TIMESTAMP},
+      #{email,jdbcType=VARCHAR}, #{encodedpassword,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER},
+      #{mobile,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+      #{point,jdbcType=BIGINT}, #{safekeyexpire,jdbcType=TIMESTAMP}, #{safekeyvalue,jdbcType=VARCHAR},
+      #{username,jdbcType=VARCHAR}, #{zipcode,jdbcType=VARCHAR}, #{areaId,jdbcType=BIGINT},
+      #{memberrankId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shop.entity.Member" >
+    insert into Member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="attributevalue0 != null" >
+        attributeValue0,
+      </if>
+      <if test="attributevalue1 != null" >
+        attributeValue1,
+      </if>
+      <if test="attributevalue2 != null" >
+        attributeValue2,
+      </if>
+      <if test="attributevalue3 != null" >
+        attributeValue3,
+      </if>
+      <if test="attributevalue4 != null" >
+        attributeValue4,
+      </if>
+      <if test="attributevalue5 != null" >
+        attributeValue5,
+      </if>
+      <if test="attributevalue6 != null" >
+        attributeValue6,
+      </if>
+      <if test="attributevalue7 != null" >
+        attributeValue7,
+      </if>
+      <if test="attributevalue8 != null" >
+        attributeValue8,
+      </if>
+      <if test="attributevalue9 != null" >
+        attributeValue9,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="birth != null" >
+        birth,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="encodedpassword != null" >
+        encodedPassword,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="point != null" >
+        point,
+      </if>
+      <if test="safekeyexpire != null" >
+        safeKeyExpire,
+      </if>
+      <if test="safekeyvalue != null" >
+        safeKeyValue,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="zipcode != null" >
+        zipCode,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="memberrankId != null" >
+        memberRank_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="attributevalue0 != null" >
+        #{attributevalue0,jdbcType=VARCHAR},
+      </if>
+      <if test="attributevalue1 != null" >
+        #{attributevalue1,jdbcType=VARCHAR},
+      </if>
+      <if test="attributevalue2 != null" >
+        #{attributevalue2,jdbcType=VARCHAR},
+      </if>
+      <if test="attributevalue3 != null" >
+        #{attributevalue3,jdbcType=VARCHAR},
+      </if>
+      <if test="attributevalue4 != null" >
+        #{attributevalue4,jdbcType=VARCHAR},
+      </if>
+      <if test="attributevalue5 != null" >
+        #{attributevalue5,jdbcType=VARCHAR},
+      </if>
+      <if test="attributevalue6 != null" >
+        #{attributevalue6,jdbcType=VARCHAR},
+      </if>
+      <if test="attributevalue7 != null" >
+        #{attributevalue7,jdbcType=VARCHAR},
+      </if>
+      <if test="attributevalue8 != null" >
+        #{attributevalue8,jdbcType=VARCHAR},
+      </if>
+      <if test="attributevalue9 != null" >
+        #{attributevalue9,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="birth != null" >
+        #{birth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="encodedpassword != null" >
+        #{encodedpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="point != null" >
+        #{point,jdbcType=BIGINT},
+      </if>
+      <if test="safekeyexpire != null" >
+        #{safekeyexpire,jdbcType=TIMESTAMP},
+      </if>
+      <if test="safekeyvalue != null" >
+        #{safekeyvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="memberrankId != null" >
+        #{memberrankId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shop.entity.Member" >
+    update Member
+    <set >
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="attributevalue0 != null" >
+        attributeValue0 = #{attributevalue0,jdbcType=VARCHAR},
+      </if>
+      <if test="attributevalue1 != null" >
+        attributeValue1 = #{attributevalue1,jdbcType=VARCHAR},
+      </if>
+      <if test="attributevalue2 != null" >
+        attributeValue2 = #{attributevalue2,jdbcType=VARCHAR},
+      </if>
+      <if test="attributevalue3 != null" >
+        attributeValue3 = #{attributevalue3,jdbcType=VARCHAR},
+      </if>
+      <if test="attributevalue4 != null" >
+        attributeValue4 = #{attributevalue4,jdbcType=VARCHAR},
+      </if>
+      <if test="attributevalue5 != null" >
+        attributeValue5 = #{attributevalue5,jdbcType=VARCHAR},
+      </if>
+      <if test="attributevalue6 != null" >
+        attributeValue6 = #{attributevalue6,jdbcType=VARCHAR},
+      </if>
+      <if test="attributevalue7 != null" >
+        attributeValue7 = #{attributevalue7,jdbcType=VARCHAR},
+      </if>
+      <if test="attributevalue8 != null" >
+        attributeValue8 = #{attributevalue8,jdbcType=VARCHAR},
+      </if>
+      <if test="attributevalue9 != null" >
+        attributeValue9 = #{attributevalue9,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="birth != null" >
+        birth = #{birth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="encodedpassword != null" >
+        encodedPassword = #{encodedpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="point != null" >
+        point = #{point,jdbcType=BIGINT},
+      </if>
+      <if test="safekeyexpire != null" >
+        safeKeyExpire = #{safekeyexpire,jdbcType=TIMESTAMP},
+      </if>
+      <if test="safekeyvalue != null" >
+        safeKeyValue = #{safekeyvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        zipCode = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="memberrankId != null" >
+        memberRank_id = #{memberrankId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shop.entity.Member" >
+    update Member
+    set address = #{address,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      attributeValue0 = #{attributevalue0,jdbcType=VARCHAR},
+      attributeValue1 = #{attributevalue1,jdbcType=VARCHAR},
+      attributeValue2 = #{attributevalue2,jdbcType=VARCHAR},
+      attributeValue3 = #{attributevalue3,jdbcType=VARCHAR},
+      attributeValue4 = #{attributevalue4,jdbcType=VARCHAR},
+      attributeValue5 = #{attributevalue5,jdbcType=VARCHAR},
+      attributeValue6 = #{attributevalue6,jdbcType=VARCHAR},
+      attributeValue7 = #{attributevalue7,jdbcType=VARCHAR},
+      attributeValue8 = #{attributevalue8,jdbcType=VARCHAR},
+      attributeValue9 = #{attributevalue9,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=DECIMAL},
+      birth = #{birth,jdbcType=TIMESTAMP},
+      email = #{email,jdbcType=VARCHAR},
+      encodedPassword = #{encodedpassword,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      point = #{point,jdbcType=BIGINT},
+      safeKeyExpire = #{safekeyexpire,jdbcType=TIMESTAMP},
+      safeKeyValue = #{safekeyvalue,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      zipCode = #{zipcode,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=BIGINT},
+      memberRank_id = #{memberrankId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="list" resultType="com.shop.entity.Member">
+    select m.id,m.username,m.memberRank_id memberrankId,m.email,m.birth,m.gender from Member m
+  </select>
+
+  <select id="findId" resultType="com.shop.entity.Member">
+    select * from Member order by id desc
+  </select>
+
+  <insert id="addMember" parameterType="com.shop.entity.Member">
+    insert into Member(address,amount,attributeValue0,attributeValue1,balance,birth,email,encodedPassword,gender,mobile,name,phone,point,username,id,memberRank_id)
+    values (
+        #{address},
+        #{amount},
+        #{attributevalue0},
+        #{attributevalue1},
+        #{balance},
+        #{birth},
+        #{email},
+        #{encodedpassword},
+        #{gender},
+        #{mobile},
+        #{name},
+        #{phone},
+        #{point},
+        #{username},
+        #{id},
+        #{memberrankId}
+    )
+  </insert>
+
+  <select id="findById" parameterType="java.lang.Long" resultType="com.shop.entity.Member">
+    select m.id,m.name,m.phone,m.mobile,m.point,m.balance,m.attributeValue1 as attributevalue1,m.username,m.memberRank_id memberrankId,m.email,m.birth,m.gender from Member m
+    where m.id = #{id}
+  </select>
+
+  <update id="updateMember" parameterType="com.shop.entity.Member">
+    update Member set email = #{email},
+                    mobile = #{mobile},
+                    memberRank_Id = #{memberrankId},
+                    name = #{name},
+                    gender = #{gender},
+                    phone = #{phone}
+        where id = #{id}
+  </update>
+</mapper>
