@@ -1,6 +1,7 @@
 package com.shop.interfaces;
 
 import com.shop.entity.Member;
+import com.shop.entity.Memberrank;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,4 +24,17 @@ public interface SystemServiceApi {
 
     @RequestMapping(value = "updateMember")
     void updateMember(@RequestBody Member member);
+
+    @RequestMapping(value = "dengji")
+    List<Memberrank> dengji();
+
+    @RequestMapping(value = "addMemberRank")
+    void addMemberRank(@RequestBody Memberrank memberrank);
+
+    @RequestMapping(value = "deleteMemberRank")
+    void deleteMemberRank(@RequestParam String ids);
+
+    @RequestMapping(value = "editIdByRank")
+    Memberrank editIdByRank(@RequestParam Long id);
+
 }

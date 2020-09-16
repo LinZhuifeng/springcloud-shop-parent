@@ -183,7 +183,7 @@
                     <a href="list" target="iframe">会员管理</a>
                 </dd>
                 <dd>
-                    <a href="member_rank/list" target="iframe">会员等级</a>
+                    <a href="dengji" target="iframe">会员等级</a>
                 </dd>
                 <dd>
                     <a href="member_attribute/list" target="iframe">会员注册项</a>

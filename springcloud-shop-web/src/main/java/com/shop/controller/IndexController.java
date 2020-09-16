@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import com.shop.entity.Member;
+import com.shop.entity.Memberrank;
 import com.shop.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ public class IndexController {
         return "main";
     }
 
+    //会员管理页面
     @RequestMapping("list")
     public String list(Model model){
         List<Member> memberList =  memberService.list();
@@ -32,10 +34,35 @@ public class IndexController {
         return "member/addMember";
     }
 
+
     @RequestMapping("findById")
     public String findById(Long id,Model model){
         Member member = memberService.findById(id);
         model.addAttribute("member",member);
         return "member/editMember";
     }
+
+    //会员等级页面
+    @RequestMapping("dengji")
+    public String dengji(Model model){
+        List<Memberrank> memberRankList =  memberService.dengji();
+        model.addAttribute("memberRankList",memberRankList);
+        return "member/dengji";
+    }
+
+    @RequestMapping("addMemberRank")
+    public String addMemberRank(){
+        return "memberRank/addMemberRank";
+    }
+
+
+    @RequestMapping("editIdByRank")
+    public String editIdByRank(Long id,Model model){
+        Memberrank memberrank = memberService.editIdByRank(id);
+        model.addAttribute("rank",memberrank);
+        return "memberRank/editMemberRank";
+    }
+
+
+
 }

@@ -79,10 +79,9 @@
 </head>
 <body>
 <div class="breadcrumb">
-    <a href="/admin/common/index">首页</a> &raquo; 编辑会员
+    <a href="main">首页</a> &raquo; 编辑会员
 </div>
 <form id="inputForm" method="post">
-    <input type="hidden" name="id" value="1" />
     <ul id="tab" class="tab">
         <li>
             <input type="button" value="基本信息" />
@@ -194,21 +193,12 @@
             </th>
             <td>
                 <span class="fieldSet">
-                    <#if member.gender==1>
                         <label>
-                            <input type="radio" name="gender" value="1" checked/>男
+                            <input type="radio" name="attributevalue0" value="1" checked/>男
                         </label>
                         <label>
-                            <input type="radio" name="gender" value="2"/>女
+                            <input type="radio" name="attributevalue0" value="2"/>女
                         </label>
-                        <#else>
-                            <label>
-                                <input type="radio" name="gender" value="1"/>男
-                            </label>
-                            <label>
-                                <input type="radio" name="gender" value="2" checked/>女
-                            </label>
-                    </#if>
                 </span>
             </td>
         </tr>
@@ -217,7 +207,7 @@
                 电话:
             </th>
             <td>
-                <input type="text" name="phone" class="text" value="555555" maxlength="200" />
+                <input type="text" name="phone" class="text" value="${member.phone}" maxlength="200" />
             </td>
         </tr>
     </table>

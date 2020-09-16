@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import com.shop.entity.Member;
+import com.shop.entity.Memberrank;
 import com.shop.interfaces.SystemServiceApi;
 import com.shop.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,4 +39,26 @@ public class SystemController implements SystemServiceApi {
     public void updateMember(Member member) {
         memberService.updateMember(member);
     }
+
+    @Override
+    public List<Memberrank> dengji() {
+        return memberService.dengji();
+    }
+
+    @Override
+    public void addMemberRank(Memberrank memberrank) {
+        memberService.addMemberRank(memberrank);
+    }
+
+    @Override
+    public void deleteMemberRank(String ids) {
+        memberService.deleteMemberRank(ids);
+    }
+
+    @Override
+    public Memberrank editIdByRank(Long id) {
+        return memberService.editIdByRank(id);
+    }
+
+
 }

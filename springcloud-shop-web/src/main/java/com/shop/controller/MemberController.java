@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import com.shop.entity.Member;
+import com.shop.entity.Memberrank;
 import com.shop.pojo.Result;
 import com.shop.service.MemberService;
 import com.shop.util.ExportExcel;
@@ -20,6 +21,7 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
+    //会员管理的操作
     @RequestMapping("deleteMember")
     public Result deleteMember(String ids){
         try {
@@ -76,6 +78,31 @@ public class MemberController {
         }
         ExportExcel exportExcel = new ExportExcel(title, rowName, dataList, response);
         exportExcel.export();
-
     }
+
+
+    //会员等级管理的操作
+    @RequestMapping("addMemberRank")
+    public Result addMemberRank(Memberrank memberrank){
+        try {
+            memberService.addMemberRank(memberrank);
+            return new Result(true,"添加成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false,"添加失败");
+        }
+    }
+
+    @RequestMapping("deleteMemberRank")
+    public Result deleteMemberRank(String ids){
+        try {
+            memberService.deleteMemberRank(ids);
+            return new Result(true, "删除成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false, "删除失败");
+        }
+    }
+
+
 }

@@ -94,7 +94,18 @@ $().ready(function() {
 						${member.username}
 					</td>
 					<td>
-						${member.memberrankId}
+						<#if member.memberrankId==1>
+							普通会员
+						</#if>
+						<#if member.memberrankId==2>
+							铜牌会员
+						</#if>
+						<#if member.memberrankId==3>
+							银牌会员
+						</#if>
+						<#if member.memberrankId==4>
+							金牌会员
+						</#if>
 					</td>
 					<td>
 						${member.email}
@@ -112,7 +123,6 @@ $().ready(function() {
 							</span>
 					</td>
 					<td>
-						<a href="view?id=53">[查看]</a>
 						<a href="javascript:editMember(${member.id})">[编辑]</a>
 					</td>
 				</tr>

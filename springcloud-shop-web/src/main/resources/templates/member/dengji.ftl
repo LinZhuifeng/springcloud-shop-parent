@@ -7,10 +7,10 @@
 <title>会员等级列表 - Powered By SHOP++</title>
 <meta name="author" content="SHOP++ Team" />
 <meta name="copyright" content="SHOP++" />
-<link href="/shopxxb2b2c/resources/admin/css/common.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/shopxxb2b2c/resources/admin/js/jquery.js"></script>
-<script type="text/javascript" src="/shopxxb2b2c/resources/admin/js/common.js"></script>
-<script type="text/javascript" src="/shopxxb2b2c/resources/admin/js/list.js"></script>
+<link href="/css/common.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/list.js"></script>
 <script type="text/javascript">
 $().ready(function() {
 
@@ -24,11 +24,11 @@ $().ready(function() {
 	</div>
 	<form id="listForm" action="list" method="get">
 		<div class="bar">
-			<a href="add" class="iconButton">
+			<a href="addMemberRank" class="iconButton">
 				<span class="addIcon">&nbsp;</span>添加
 			</a>
 			<div class="buttonGroup">
-				<a href="javascript:;" id="deleteButton" class="iconButton disabled">
+				<a href="javascript:deleteMemberRank()" id="deleteButton" class="iconButton">
 					<span class="deleteIcon">&nbsp;</span>删除
 				</a>
 				<a href="javascript:;" id="refreshButton" class="iconButton">
@@ -78,91 +78,62 @@ $().ready(function() {
 					<span>操作</span>
 				</th>
 			</tr>
+			<#list memberRankList as rank>
 				<tr>
 					<td>
-						<input type="checkbox" name="ids" value="4" />
+						<input type="checkbox" name="quanxuan" value="${rank.id}" />
 					</td>
 					<td>
-						金牌会员
+						${rank.name}
 					</td>
 					<td>
-						1
+						${rank.scale}
 					</td>
 					<td>
-						100000
+						${rank.amount}
 					</td>
 					<td>
-						否
+						<#if rank.isdefault>
+							是
+							<#else>
+							否
+						</#if>
 					</td>
 					<td>
-						<a href="edit?id=4">[编辑]</a>
+						<a href="editIdByRank?id=${rank.id}">[编辑]</a>
 					</td>
 				</tr>
-				<tr>
-					<td>
-						<input type="checkbox" name="ids" value="3" />
-					</td>
-					<td>
-						银牌会员
-					</td>
-					<td>
-						1
-					</td>
-					<td>
-						10000
-					</td>
-					<td>
-						否
-					</td>
-					<td>
-						<a href="edit?id=3">[编辑]</a>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="checkbox" name="ids" value="2" />
-					</td>
-					<td>
-						铜牌会员
-					</td>
-					<td>
-						1
-					</td>
-					<td>
-						1000
-					</td>
-					<td>
-						否
-					</td>
-					<td>
-						<a href="edit?id=2">[编辑]</a>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="checkbox" name="ids" title="默认会员等级不允许删除" disabled="disabled" />
-					</td>
-					<td>
-						普通会员
-					</td>
-					<td>
-						1
-					</td>
-					<td>
-						0
-					</td>
-					<td>
-						是
-					</td>
-					<td>
-						<a href="edit?id=1">[编辑]</a>
-					</td>
-				</tr>
+			</#list>
 		</table>
 <input type="hidden" id="pageSize" name="pageSize" value="20" />
 <input type="hidden" id="searchProperty" name="searchProperty" value="" />
 <input type="hidden" id="orderProperty" name="orderProperty" value="" />
 <input type="hidden" id="orderDirection" name="orderDirection" value="" />
-	</form>
+</form>
 </body>
+<script type="text/javascript">
+
+	function deleteMemberRank(){
+		var temp = "";
+		$("[name='quanxuan']:checked").each(function () {
+			temp += "," + $(this).val();
+		})
+		var ids = temp.substr(1);
+		$.ajax({
+			url: 'member/deleteMemberRank',
+			type: 'post',
+			data: {'ids': ids},
+			dataType: 'json',
+			success: function (result) {
+				if (result.success) {
+					alert(result.message);
+					location.href = 'dengji';
+				} else {
+					alert(result.message);
+				}
+			}
+		})
+	}
+
+</script>
 </html>

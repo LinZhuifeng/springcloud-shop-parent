@@ -394,17 +394,54 @@
   </insert>
 
   <select id="findById" parameterType="java.lang.Long" resultType="com.shop.entity.Member">
-    select m.id,m.name,m.phone,m.mobile,m.point,m.balance,m.attributeValue1 as attributevalue1,m.username,m.memberRank_id memberrankId,m.email,m.birth,m.gender from Member m
+    select m.id,m.name,m.phone,m.mobile,m.point,m.balance,m.attributeValue0 as attributevalue0,m.attributeValue1 as attributevalue1,m.username,m.memberRank_id as memberrankId,m.email,m.birth,m.gender from Member m
     where m.id = #{id}
   </select>
 
   <update id="updateMember" parameterType="com.shop.entity.Member">
-    update Member set email = #{email},
-                    mobile = #{mobile},
-                    memberRank_Id = #{memberrankId},
-                    name = #{name},
-                    gender = #{gender},
-                    phone = #{phone}
-        where id = #{id}
+    update Member m set
+                    m.attributeValue0 = #{attributevalue0},
+                    m.email = #{email},
+                    m.encodedPassword = #{encodedpassword},
+                    m.mobile = #{mobile},
+                    m.name = #{name},
+                    m.phone = #{phone},
+                    m.memberRank_id = #{memberrankId}
+    where m.id = #{id}
   </update>
+
+<!--  会员等级-->
+  <select id="dengji" resultType="com.shop.entity.Memberrank">
+    select r.id,r.createdDate createdate,r.lastModifiedDate lastmodifieddate,r.version,r.amount,r.isDefault isdefault,r.isSpecial isspecial,r.name,r.scale from MemberRank r
+  </select>
+
+  <select id="findIdByRank" resultType="com.shop.entity.Memberrank">
+    select r.id,r.createdDate createdate,r.lastModifiedDate lastmodifieddate,r.version,r.amount,r.isDefault isdefault,r.isSpecial isspecial,r.name,r.scale from MemberRank r
+    group by r.id desc
+  </select>
+
+  <insert id="addMemberRank" parameterType="com.shop.entity.Memberrank">
+    insert into MemberRank(id,createdDate,lastModifiedDate,version,amount,isDefault,isSpecial,name,scale)
+    values (
+        #{id},
+        #{createddate},
+        #{lastmodifieddate},
+        #{version},
+        #{amount},
+        #{isdefault},
+        #{isspecial},
+        #{name},
+        #{scale}
+    )
+  </insert>
+
+  <delete id="deleteMemberRank" parameterType="java.lang.Long">
+    delete from MemberRank where id = #{id}
+  </delete>
+
+  <select id="editIdByRank" parameterType="java.lang.Long" resultType="com.shop.entity.Memberrank">
+    select r.id,r.createdDate createdate,r.lastModifiedDate lastmodifieddate,r.version,r.amount,r.isDefault isdefault,r.isSpecial isspecial,r.name,r.scale from MemberRank r
+    where r.id = #{id}
+  </select>
+
 </mapper>

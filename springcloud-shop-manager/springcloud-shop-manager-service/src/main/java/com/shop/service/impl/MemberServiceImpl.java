@@ -2,6 +2,7 @@ package com.shop.service.impl;
 
 import com.shop.dao.MemberMapper;
 import com.shop.entity.Member;
+import com.shop.entity.Memberrank;
 import com.shop.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,7 +60,48 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void updateMember(Member member) {
-        memberMapper.updateByPrimaryKeySelective(member);
+        memberMapper.updateMember(member);
+    }
+
+    @Override
+    public List<Memberrank> dengji() {
+        return memberMapper.dengji();
+    }
+
+    @Override
+    public void addMemberRank(Memberrank memberrank) {
+        List<Memberrank> rankList = memberMapper.findIdByRank();
+        if(rankList ==null || CollectionUtils.isEmpty(rankList)){
+            memberrank.setId(1l);
+        }else{
+            memberrank.setId(rankList.get(0).getId()+1);
+        }
+
+        if(memberrank.getIsspecial()==true){
+            memberrank.setAmount(new BigDecimal(0));
+        }else{
+            memberrank.setAmount(memberrank.getAmount());
+        }
+
+        memberrank.setCreateddate(new Date());
+        memberrank.setLastmodifieddate(new Date());
+        memberrank.setVersion(0l);
+        memberMapper.addMemberRank(memberrank);
+    }
+
+    @Override
+    public void deleteMemberRank(String ids) {
+        String[] split = ids.split(",");
+        for (int i = 0; i < split.length; i++) {
+            if (split[i] != null && !"".equals(split[i])) {
+                memberMapper.deleteMemberRank(Long.valueOf(split[i].trim()));
+            }
+        }
+    }
+
+    @Override
+    public Memberrank editIdByRank(Long id) {
+        return memberMapper.editIdByRank(id);
     }
 
 }

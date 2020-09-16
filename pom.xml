@@ -12,6 +12,8 @@
         <module>springcloud-shop-config-server</module>
         <module>springcloud-shop-manager</module>
         <module>springcloud-shop-web</module>
+        <module>springcloud-shop-cart-manager</module>
+        <module>springcloud-shop-cart-web</module>
     </modules>
     <packaging>pom</packaging>
 
